@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVERSIZED | Premium Gym Apparel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <div class="nav-brand">
+            <a href="#hero" class="brand-link">
+                <span class="brand-text">OVERSIZED</span>
+                <span class="brand-tag">EST. 2024</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="#collection" class="nav-link" data-text="Collection">Collection</a>
+            <a href="#features" class="nav-link" data-text="Features">Features</a>
+            <a href="#reviews" class="nav-link" data-text="Reviews">Reviews</a>
+            <a href="#about" class="nav-link" data-text="About">About</a>
+        </div>
+        <div class="nav-actions">
+            <button class="search-btn" aria-label="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                </svg>
+            </button>
+            <button class="cart-btn" aria-label="Cart" id="cartBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                </svg>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="menu-bg"></div>
+        <div class="menu-content">
+            <a href="#collection" class="menu-link">Collection</a>
+            <a href="#features" class="menu-link">Features</a>
+            <a href="#reviews" class="menu-link">Reviews</a>
+            <a href="#about" class="menu-link">About</a>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-overlay" id="cartOverlay"></div>
+        <div class="cart-panel">
+            <div class="cart-header">
+                <h3>Your Cart</h3>
+                <button class="cart-close" id="cartClose">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items injected via JS -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-subtotal">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal">$0.00</span>
+                </div>
+                <p class="cart-note">Shipping & taxes calculated at checkout</p>
+                <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+                <button class="continue-btn" id="continueShopping">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-canvas-container" id="heroCanvas"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-pulse"></span>
+                <span>New Drop Available</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line" data-parallax="0.1">OVERSIZED</span>
+                <span class="title-line" data-parallax="0.15">PERFORMANCE</span>
+                <span class="title-line accent" data-parallax="0.2">TEES</span>
+            </h1>
+            <p class="hero-desc" data-parallax="0.05">
+                Engineered for the grind. Designed for the aesthetic. 
+                Premium heavyweight cotton that moves with your intensity.
+            </p>
+            <div class="hero-cta" data-parallax="0.08">
+                <a href="#collection" class="btn-primary">
+                    <span>Explore Collection</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#features" class="btn-secondary">Learn More</a>
+            </div>
+            <div class="hero-stats" data-parallax="0.03">
+                <div class="stat">
+                    <span class="stat-num">280</span>
+                    <span class="stat-label">GSM Cotton</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">12K+</span>
+                    <span class="stat-label">Happy Lifters</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">4.9</span>
+                    <span class="stat-label">Star Rating</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Scroll to explore</span>
+        </div>
+        <div class="hero-gradient"></div>
+    </section>
+
+    <!-- Marquee Section -->
+    <section class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-content">
+                <span>HEAVYWEIGHT COTTON</span>
+                <span class="marquee-dot"></span>
+                <span>OVERSIZED FIT</span>
+                <span class="marquee-dot"></span>
+                <span>GYM READY</span>
+                <span class="marquee-dot"></span>
+                <span>PREMIUM QUALITY</span>
+                <span class="marquee-dot"></span>
+                <span>HEAVYWEIGHT COTTON</span>
+                <span class="marquee-dot"></span>
+                <span>OVERSIZED FIT</span>
+                <span class="marquee-dot"></span>
+                <span>GYM READY</span>
+                <span class="marquee-dot"></span>
+                <span>PREMIUM QUALITY</span>
+                <span class="marquee-dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Section -->
+    <section class="collection" id="collection">
+        <div class="section-header">
+            <span class="section-tag">The Collection</span>
+            <h2 class="section-title">Built Different</h2>
+            <p class="section-desc">Every stitch engineered for performance. Every drop designed to make a statement.</p>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All Tees</button>
+            <button class="filter-btn" data-filter="classic">Classic</button>
+            <button class="filter-btn" data-filter="graphic">Graphic</button>
+            <button class="filter-btn" data-filter="limited">Limited</button>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Products rendered via JS -->
+        </div>
+    </section>
+
+    <!-- 3D Showcase Section -->
+    <section class="showcase" id="showcase">
+        <div class="showcase-canvas-container" id="showcaseCanvas"></div>
+        <div class="showcase-content">
+            <span class="section-tag">360° View</span>
+            <h2 class="showcase-title">Feel the Fabric</h2>
+            <p class="showcase-desc">
+                Drag to rotate. Experience the drape, weight, and texture of our 
+                premium 280gsm cotton before you buy.
+            </p>
+            <div class="showcase-features">
+                <div class="showcase-feature">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <span>280gsm Heavyweight</span>
+                </div>
+                <div class="showcase-feature">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <span>Pre-Shrunk</span>
+                </div>
+                <div class="showcase-feature">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <span>Drop Shoulder</span>
+                </div>
+            </div>
+        </div>
+        <div class="showcase-overlay"></div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="feature-block" data-feature="1">
+                <div class="feature-visual">
+                    <div class="feature-number">01</div>
+                    <div class="feature-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=80" alt="Heavyweight fabric" class="feature-img">
+                    </div>
+                </div>
+                <div class="feature-text">
+                    <span class="feature-tag">Material</span>
+                    <h3>280gsm Heavyweight Cotton</h3>
+                    <p>Not your average tee. Our proprietary blend uses ring-spun cotton at 280 grams per square meter — nearly double standard weight. The result? A shirt that holds its structure through every rep, every wash, every year.</p>
+                    <ul class="feature-list">
+                        <li>Ring-spun for extra softness</li>
+                        <li>Double-stitched seams</li>
+                        <li>Reinforced collar</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-block reverse" data-feature="2">
+                <div class="feature-visual">
+                    <div class="feature-number">02</div>
+                    <div class="feature-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80" alt="Oversized fit" class="feature-img">
+                    </div>
+                </div>
+                <div class="feature-text">
+                    <span class="feature-tag">Fit</span>
+                    <h3>The Perfect Oversized Drape</h3>
+                    <p>Engineered drop-shoulder silhouette with extended body length. Designed to flatter every frame while providing unrestricted movement. Tapered enough to show the gains, loose enough to train in comfort.</p>
+                    <ul class="feature-list">
+                        <li>Drop shoulder construction</li>
+                        <li>Extended body length</li>
+                        <li>Tapered sleeve opening</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-block" data-feature="3">
+                <div class="feature-visual">
+                    <div class="feature-number">03</div>
+                    <div class="feature-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80" alt="Durability test" class="feature-img">
+                    </div>
+                </div>
+                <div class="feature-text">
+                    <span class="feature-tag">Durability</span>
+                    <h3>Built to Outlast Your PRs</h3>
+                    <p>Stress-tested through 100+ wash cycles. Color stays vibrant. Shape stays true. Our pre-shrunk treatment and reinforced stress points mean this tee becomes your gym bag staple for years.</p>
+                    <ul class="feature-list">
+                        <li>100+ wash cycle tested</li>
+                        <li>Color-lock technology</li>
+                        <li>Reinforced stress points</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Size Guide Section -->
+    <section class="size-guide" id="sizeGuide">
+        <div class="size-guide-content">
+            <span class="section-tag">Fit Guide</span>
+            <h2 class="section-title">Find Your Size</h2>
+            <div class="size-visual">
+                <div class="size-chart">
+                    <div class="size-row header">
+                        <span>Size</span>
+                        <span>Chest</span>
+                        <span>Length</span>
+                        <span>Sleeve</span>
+                    </div>
+                    <div class="size-row" data-size="S">
+                        <span>S</span>
+                        <span>42"</span>
+                        <span>28"</span>
+                        <span>9"</span>
+                    </div>
+                    <div class="size-row" data-size="M">
+                        <span>M</span>
+                        <span>46"</span>
+                        <span>29"</span>
+                        <span>9.5"</span>
+                    </div>
+                    <div class="size-row active" data-size="L">
+                        <span>L</span>
+                        <span>50"</span>
+                        <span>30"</span>
+                        <span>10"</span>
+                    </div>
+                    <div class="size-row" data-size="XL">
+                        <span>XL</span>
+                        <span>54"</span>
+                        <span>31"</span>
+                        <span>10.5"</span>
+                    </div>
+                    <div class="size-row" data-size="XXL">
+                        <span>XXL</span>
+                        <span>58"</span>
+                        <span>32"</span>
+                        <span>11"</span>
+                    </div>
+                </div>
+                <div class="size-model">
+                    <div class="model-visual" id="sizeModel"></div>
+                    <p class="model-note">Model is 6'2" wearing size L</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="reviews-header">
+            <span class="section-tag">Testimonials</span>
+            <h2 class="section-title">Lifter Approved</h2>
+            <div class="reviews-rating">
+                <div class="stars">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <span class="rating-score">4.9/5</span>
+                <span class="rating-count">Based on 2,847 reviews</span>
+            </div>
+        </div>
+        <div class="reviews-carousel" id="reviewsCarousel">
+            <!-- Reviews injected via JS -->
+        </div>
+    </section>
+
+    <!-- About/Brand Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <span class="section-tag">Our Story</span>
+                <h2 class="section-title">Born in the Gym</h2>
+                <p>We started OVERSIZED because we were tired of choosing between comfort and style at the gym. Every shirt was either too tight, too thin, or looked like a tent.</p>
+                <p>So we built the tee we actually wanted to wear — heavyweight cotton that drapes perfectly, survives brutal workouts, and looks good enough to wear anywhere.</p>
+                <div class="about-stats">
+                    <div class="about-stat">
+                        <span class="about-stat-num">50K+</span>
+                        <span class="about-stat-label">Tees Sold</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="about-stat-num">12</span>
+                        <span class="about-stat-label">Countries</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="about-stat-num">100%</span>
+                        <span class="about-stat-label">Satisfaction</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="about-image-stack">
+                    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80" alt="Gym lifestyle" class="about-img about-img-1">
+                    <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80" alt="Training" class="about-img about-img-2">
+                    <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=600&q=80" alt="Lifestyle" class="about-img about-img-3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Join the Movement</h2>
+            <p>Get early access to drops, exclusive discounts, and training tips.</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Enter your email" required class="newsletter-input">
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+            <p class="newsletter-note">No spam. Unsubscribe anytime. Join 15,000+ lifters.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="footer-logo">OVERSIZED</span>
+                <p>Engineered for the grind. Designed for the aesthetic.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    <a href="#" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+                    <a href="#" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.53C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <a href="#">All Products</a>
+                    <a href="#">New Arrivals</a>
+                    <a href="#">Best Sellers</a>
+                    <a href="#">Accessories</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="#">Size Guide</a>
+                    <a href="#">Shipping Info</a>
+                    <a href="#">Returns</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Press</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 OVERSIZED. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quickViewModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-overlay" id="checkoutOverlay"></div>
+        <div class="checkout-panel">
+            <div class="checkout-header">
+                <h3>Secure Checkout</h3>
+                <button class="checkout-close" id="checkoutClose">&times;</button>
+            </div>
+            <div class="checkout-body">
+                <div class="checkout-steps">
+                    <div class="step active" data-step="1">
+                        <span class="step-num">1</span>
+                        <span class="step-label">Shipping</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step-num">2</span>
+                        <span class="step-label">Payment</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step-num">3</span>
+                        <span class="step-label">Review</span>
+                    </div>
+                </div>
+                <form class="checkout-form" id="checkoutForm">
+                    <div class="form-step active" data-form-step="1">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" required placeholder="you@example.com">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" required placeholder="John">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" required placeholder="Doe">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" required placeholder="123 Gym Street">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" required placeholder="New York">
+                            </div>
+                            <div class="form-group">
+                                <label>ZIP</label>
+                                <input type="text" required placeholder="10001">
+                            </div>
+                        </div>
+                        <button type="button" class="btn-primary next-step">Continue to Payment</button>
+                    </div>
+                    <div class="form-step" data-form-step="2">
+                        <div class="payment-methods">
+                            <div class="payment-method active">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                                <span>Credit Card</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Card Number</label>
+                            <input type="text" placeholder="4242 4242 4242 4242">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Expiry</label>
+                                <input type="text" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group">
+                                <label>CVC</label>
+                                <input type="text" placeholder="123">
+                            </div>
+                        </div>
+                        <button type="button" class="btn-primary next-step">Review Order</button>
+                    </div>
+                    <div class="form-step" data-form-step="3">
+                        <div class="order-summary" id="orderSummary"></div>
+                        <button type="submit" class="btn-primary place-order">Place Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-message" id="toastMessage"></span>
+    </div>
+
+    <script src="products.js"></script>
+    <script src="cart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
